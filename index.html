@@ -2,24 +2,31 @@
 layout: default
 title: Home
 cover: false
-about: 'about.html'
 ---
 
 <header class="main-header {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
     <nav class="main-nav overlay clearfix">
             {% if page.logo %}
-                <a class="blog-logo" href="{{ site.baseurl }}">
+                <a class="blog-logo" href="{{ site.baseurl }}/">
                     <img src="{{ page.logo }}" alt="Blog Logo" />
                 </a>
             {% endif %}
-        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a>
+            <!-- <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a> -->
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
             <h1 class="page-title">{{ site.name }}</h1>
+            <h5>
+                {% assign items=site.pages | where_exp: "item","item.homepage>0" | where_exp: "item","item.categories contains 'Top'" |  sort: 'homepage', 'last' %}
+                <ul class="homepage-menu">
+                {% for p in items %}
+                <li><a href="{{ p.url | prepend: site.baseurl}}">{{ p.title }}</a></li>
+                {% endfor %}
+                </ul>
+                {% if page.about %} <a href='{{ site.baseurl }}{{ page.about }}'> About me </a> {% endif %}
+            </h5>
             <h2 class="page-description">
                 {% if site.description %} {{ site.description }}. {% endif %}
-                {% if page.about %} <a href='{{ site.baseurl }}{{ page.about }}'> About me </a> {% endif %}
             </h2>
         </div>
     </div>
@@ -28,8 +35,28 @@ about: 'about.html'
 
 
 <main id="content" class="content" role="main">
+                
 
 
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title">Unsere Demos</h2>
+        </header>
+        <section class="post-excerpt">
+            {% assign items=site.pages | where_exp: "item","item.homepage>0" | where_exp: "item","item.categories contains 'Demos'" |  sort: 'date', 'last' %}
+            
+            {%- for post in items reversed %}
+            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if forloop.last == false %} &middot; {% endif %}
+            {% endfor %}
+        </section>
+    </article>
+
+
+    <article class="post page-section">
+        <header class="post-header">
+            <h2>Blog Posts</h2>
+        </header>
+    </article>
     <div class="extra-pagination inner">
         {% include pagination.html %}
     </div>
@@ -38,23 +65,26 @@ about: 'about.html'
 
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <h5 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h5>
         </header>
-        <section class="post-excerpt">
-            {{ post.excerpt }} <a class="read-more" href="{{ post.url }}">&raquo;</a>
-        </section>
         <footer class="post-meta">
-            {% if site.author %}
+            <!-- {% if site.author %}
                 <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
                 {{ site.author }}
-            {% endif %}
+                {% endif %} --> 
+            <!--
             {% if post.categories.size > 0 %} 
                 {{ post.categories | array_to_sentence_string | prepend: 'on ' }} 
             {% endif %}
+            -->
             <time class="post-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">
-                {{ post.date | date_to_string }}
+                {{ post.date | date:"%d. %m. %Y" }}
             </time> 
+            {% if post.author %}<span> | {{ post.author }}</span>{% endif %}
         </footer>
+        <section class="post-excerpt">
+            {{ post.excerpt }} <a class="read-more" href="{{ site.baseurl }}{{ post.url }}">&raquo;</a>
+        </section>
     </article>
 
     {% endfor %}

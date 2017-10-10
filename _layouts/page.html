@@ -4,8 +4,8 @@ post_class: post-template page-template
 ---
 
 <nav class="main-nav clearfix">
-    <a class="back-button icon-arrow-left" href="{{ site.baseurl }}">Home</a>
-    <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a>
+    <a class="back-button icon-arrow-left" href="{{ site.baseurl }}/">Home</a>
+    <!-- <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a> -->
 </nav>
 
 
@@ -27,6 +27,32 @@ post_class: post-template page-template
             {{content}}
         </section>
 
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            <!-- 
+            {% if site.author %}
+                <figure class="author-image">
+                    <a class="img" href="{{ site.baseurl }}" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">{{site.author}}'s Picture</span></a>
+                </figure>
+                <section class="author">
+                    <h4> {{ site.author }} </h4>
+                    <p>
+                        Here goes the author description. You might want to place some links too in here
+                    </p>
+                </section>
+            {% endif %}
+            -->
+            <!-- Share links section -->
+            {% include share.html %}
+
+            <section>
+
+            {% include edit_me.html item=page label="Beitrag" %}
+
+
+            </section>
     </article>
+
 
 </main>

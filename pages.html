@@ -1,0 +1,14 @@
+---
+title: Seitenliste
+layout: default
+post_class: post-template page-template
+---
+
+<h3> Seiten </h3>
+<ul>
+{% for page in site.pages %}
+{%- if 1 %}
+<li><a href="{{ site.baseurl }}{{ page.url }}">{% if page.title %}{{ page.title }}{% else %}{{ page.url }}{% endif %}</a></li>
+{% endif %}
+{% endfor %}
+</ul>

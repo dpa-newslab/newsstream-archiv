@@ -1,0 +1,12 @@
+<div style="padding: 10px; border: 1px solid red; border-radius: 10px">
+
+<h4>Baustellen-Links</h4>
+
+<button class="dpa" onClick="document.location.href=$(this).data('url')" data-url="{% if site.github.repository_url %}{{ site.github.repository_url }}/blob/{{ site.github.source.branch}}/{% else %}file:///{% endif %}{% if include.item %}{{ include.item.path }}{% else %}{{ page.path }}{% endif %}">{% if include.label %}{{ include.label }} auf{% else %}Auf{% endif %} GitHub bearbeiten.</button>
+<br/>
+{% if include.item.wplink %}
+<a href="{{ include.item.wplink }}">Diese Seite auf newssstreamproject.org</a>
+{% endif %}
+
+
+</div>
