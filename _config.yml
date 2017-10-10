@@ -5,7 +5,7 @@ meta_description: "Website siehe newsstreamproject.org"
 markdown: kramdown
 highlighter: pygments
 logo: false
-paginate: 15
+paginate: 20 
 baseurl: /newsstream-archiv
 domain_name: 'http://dpa-newslab.github.io'
 google_analytics: 
