@@ -6,7 +6,7 @@ markdown: kramdown
 highlighter: pygments
 logo: false
 paginate: 15
-baseurl: /newsstream-archive
+baseurl: /newsstream-archiv
 domain_name: 'http://dpa-newslab.github.io'
 google_analytics: 
 plugins: [jekyll-paginate]
