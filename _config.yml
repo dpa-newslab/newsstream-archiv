@@ -3,7 +3,7 @@ description: Gefördert vom BMBF, 2015-2017
 meta_description: "Website siehe newsstreamproject.org"
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 logo: false
 paginate: 20 
 baseurl: /newsstream-archiv
